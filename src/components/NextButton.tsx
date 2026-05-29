@@ -1,18 +1,8 @@
-import type { Dispatch } from "react";
-import type { Action, State } from "../App";
+import { useQuiz } from "../context/QuizContext";
 
-interface NextButtonProps {
-  dispatch: Dispatch<Action>;
-  answer: State["answer"];
-  index: State["index"];
-  numQuestions: number;
-}
-const NextButton = ({
-  dispatch,
-  answer,
-  index,
-  numQuestions,
-}: NextButtonProps) => {
+const NextButton = () => {
+  const { answer, index, numQuestions, dispatch } = useQuiz();
+
   if (answer === null) return null;
 
   if (index < numQuestions - 1)

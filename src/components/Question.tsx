@@ -1,15 +1,10 @@
-import type { Dispatch } from "react";
-import type { Action, QuestionType, State } from "../App";
+import { useQuiz } from "../context/QuizContext";
 import Options from "./Options";
 
-interface QuestionProps {
-  currQuestion: QuestionType;
-  dispatch: Dispatch<Action>;
-  answer: State["answer"];
-}
+const Question = () => {
+  const { dispatch, answer, questions, index } = useQuiz();
 
-const Question = ({ currQuestion, dispatch, answer }: QuestionProps) => {
-  const { question, options, correctOption } = currQuestion;
+  const { question, options, correctOption } = questions[index];
 
   return (
     <div>
