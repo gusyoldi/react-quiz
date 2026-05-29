@@ -1,20 +1,8 @@
-import type { State } from "../App";
+import { useQuiz } from "../context/QuizContext";
 
-interface ProgressProps {
-  index: State["index"];
-  numQuestions: number;
-  points: State["points"];
-  maxPossiblePoints: number;
-  answer: State["answer"];
-}
+const Progress = () => {
+  const { index, numQuestions, points, maxPossiblePoints, answer } = useQuiz();
 
-const Progress = ({
-  index,
-  numQuestions,
-  points,
-  maxPossiblePoints,
-  answer,
-}: ProgressProps) => {
   return (
     <header className="progress">
       <progress value={index + Number(answer !== null)} max={numQuestions} />

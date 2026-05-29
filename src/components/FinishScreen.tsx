@@ -1,19 +1,8 @@
-import type { Dispatch } from "react";
-import type { Action, State } from "../App";
+import { useQuiz } from "../context/QuizContext";
 
-interface FinishScreenProps {
-  points: State["points"];
-  maxPossiblePoints: number;
-  highscore: number;
-  dispatch: Dispatch<Action>;
-}
+const FinishScreen = () => {
+  const { points, maxPossiblePoints, highscore, dispatch } = useQuiz();
 
-const FinishScreen = ({
-  points,
-  maxPossiblePoints,
-  highscore,
-  dispatch,
-}: FinishScreenProps) => {
   const percentage = (points / maxPossiblePoints) * 100;
 
   let emoji;

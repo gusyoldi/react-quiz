@@ -1,12 +1,9 @@
-import { useEffect, type Dispatch } from "react";
-import type { Action, State } from "../App";
+import { useEffect } from "react";
+import { useQuiz } from "../context/QuizContext";
 
-interface TimerProps {
-  dispatch: Dispatch<Action>;
-  secondsRemaning: State["secondsRemaning"];
-}
+const Timer = () => {
+  const { secondsRemaning, dispatch } = useQuiz();
 
-const Timer = ({ secondsRemaning, dispatch }: TimerProps) => {
   if (secondsRemaning === null) return null;
 
   const mins = Math.floor(secondsRemaning / 60);
