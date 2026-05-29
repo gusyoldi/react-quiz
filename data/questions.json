@@ -1,136 +1,136 @@
 {
   "questions": [
     {
-      "question": "Which is the most popular JavaScript framework?",
+      "question": "¿Cuál es el framework de JavaScript más popular?",
       "options": ["Angular", "React", "Svelte", "Vue"],
       "correctOption": 1,
       "points": 10
     },
     {
-      "question": "Which company invented React?",
+      "question": "¿Qué empresa inventó React?",
       "options": ["Google", "Apple", "Netflix", "Facebook"],
       "correctOption": 3,
       "points": 10
     },
     {
-      "question": "What's the fundamental building block of React apps?",
-      "options": ["Components", "Blocks", "Elements", "Effects"],
+      "question": "¿Cuál es el bloque fundamental de las aplicaciones React?",
+      "options": ["Componentes", "Bloques", "Elementos", "Efectos"],
       "correctOption": 0,
       "points": 10
     },
     {
-      "question": "What's the name of the syntax we use to describe the UI in React components?",
+      "question": "¿Cómo se llama la sintaxis que usamos para describir la UI en los componentes de React?",
       "options": ["FBJ", "Babel", "JSX", "ES2015"],
       "correctOption": 2,
       "points": 10
     },
     {
-      "question": "How does data flow naturally in React apps?",
+      "question": "¿Cómo fluye naturalmente la información en las aplicaciones React?",
       "options": [
-        "From parents to children",
-        "From children to parents",
-        "Both ways",
-        "The developers decides"
+        "De padres a hijos",
+        "De hijos a padres",
+        "En ambas direcciones",
+        "Lo decide el desarrollador"
       ],
       "correctOption": 0,
       "points": 10
     },
     {
-      "question": "How to pass data into a child component?",
-      "options": ["State", "Props", "PropTypes", "Parameters"],
+      "question": "¿Cómo se pasan datos a un componente hijo?",
+      "options": ["State", "Props", "PropTypes", "Parámetros"],
       "correctOption": 1,
       "points": 10
     },
     {
-      "question": "When to use derived state?",
+      "question": "¿Cuándo se debe usar un estado derivado?",
       "options": [
-        "Whenever the state should not trigger a re-render",
-        "Whenever the state can be synchronized with an effect",
-        "Whenever the state should be accessible to all components",
-        "Whenever the state can be computed from another state variable"
+        "Cuando el estado no debe provocar un re-render",
+        "Cuando el estado puede sincronizarse con un efecto",
+        "Cuando el estado debe ser accesible para todos los componentes",
+        "Cuando el estado puede calcularse a partir de otra variable de estado"
       ],
       "correctOption": 3,
       "points": 30
     },
     {
-      "question": "What triggers a UI re-render in React?",
+      "question": "¿Qué provoca un re-render de la UI en React?",
       "options": [
-        "Running an effect",
-        "Passing props",
-        "Updating state",
-        "Adding event listeners to DOM elements"
+        "Ejecutar un efecto",
+        "Pasar props",
+        "Actualizar el estado",
+        "Agregar event listeners a elementos del DOM"
       ],
       "correctOption": 2,
       "points": 20
     },
     {
-      "question": "When do we directly \"touch\" the DOM in React?",
+      "question": "¿En qué situación interactuamos directamente con el DOM en React?",
       "options": [
-        "When we need to listen to an event",
-        "When we need to change the UI",
-        "When we need to add styles",
-        "Almost never"
+        "Cuando necesitamos escuchar un evento",
+        "Cuando necesitamos cambiar la UI",
+        "Cuando necesitamos agregar estilos",
+        "Casi nunca"
       ],
       "correctOption": 3,
       "points": 20
     },
     {
-      "question": "In what situation do we use a callback to update state?",
+      "question": "¿En qué situación usamos un callback para actualizar el estado?",
       "options": [
-        "When updating the state will be slow",
-        "When the updated state is very data-intensive",
-        "When the state update should happen faster",
-        "When the new state depends on the previous state"
+        "Cuando actualizar el estado será lento",
+        "Cuando el estado actualizado consume muchos datos",
+        "Cuando la actualización del estado debe ocurrir más rápido",
+        "Cuando el nuevo estado depende del estado anterior"
       ],
       "correctOption": 3,
       "points": 30
     },
     {
-      "question": "If we pass a function to useState, when will that function be called?",
+      "question": "Si le pasamos una función a useState, ¿cuándo se ejecutará esa función?",
       "options": [
-        "On each re-render",
-        "Each time we update the state",
-        "Only on the initial render",
-        "The first time we update the state"
+        "En cada re-render",
+        "Cada vez que actualizamos el estado",
+        "Solo en el render inicial",
+        "La primera vez que actualizamos el estado"
       ],
       "correctOption": 2,
       "points": 30
     },
     {
-      "question": "Which hook to use for an API request on the component's initial render?",
+      "question": "¿Qué hook se usa para hacer una petición a una API en el render inicial del componente?",
       "options": ["useState", "useEffect", "useRef", "useReducer"],
       "correctOption": 1,
       "points": 10
     },
     {
-      "question": "Which variables should go into the useEffect dependency array?",
+      "question": "¿Qué variables deberían ir en el array de dependencias de useEffect?",
       "options": [
-        "Usually none",
-        "All our state variables",
-        "All state and props referenced in the effect",
-        "All variables needed for clean up"
+        "Normalmente ninguna",
+        "Todas nuestras variables de estado",
+        "Todos los estados y props referenciados dentro del efecto",
+        "Todas las variables necesarias para el clean up"
       ],
       "correctOption": 2,
       "points": 30
     },
     {
-      "question": "An effect will always run on the initial render.",
+      "question": "Un efecto siempre se ejecutará en el render inicial.",
       "options": [
-        "True",
-        "It depends on the dependency array",
-        "False",
-        "In depends on the code in the effect"
+        "Verdadero",
+        "Depende del array de dependencias",
+        "Falso",
+        "Depende del código dentro del efecto"
       ],
       "correctOption": 0,
       "points": 30
     },
     {
-      "question": "When will an effect run if it doesn't have a dependency array?",
+      "question": "¿Cuándo se ejecutará un efecto si no tiene un array de dependencias?",
       "options": [
-        "Only when the component mounts",
-        "Only when the component unmounts",
-        "The first time the component re-renders",
-        "Each time the component is re-rendered"
+        "Solo cuando el componente se monta",
+        "Solo cuando el componente se desmonta",
+        "La primera vez que el componente hace re-render",
+        "Cada vez que el componente se vuelve a renderizar"
       ],
       "correctOption": 3,
       "points": 20
