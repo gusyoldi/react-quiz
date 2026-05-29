@@ -5,7 +5,7 @@ const StartScreen = () => {
 
   return (
     <div className="start">
-      <h2>Bienbenidxs a React Quiz!</h2>
+      <h2>Bienvenidos a React Quiz!</h2>
       <h3>{numQuestions} preguntas sobre React</h3>
       <button
         className="btn btn-ui"
