@@ -1,8 +1,10 @@
-export default function Loader() {
+function Loader() {
   return (
     <div className="loader-container">
       <div className="loader"></div>
-      <p>Loading questions...</p>
+      <p>Cargando preguntas...</p>
     </div>
   );
 }
+
+export default Loader;
