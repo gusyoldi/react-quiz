@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { useQuiz } from "../context/QuizContext";
 
 const TechFilter = () => {
@@ -13,6 +14,7 @@ const TechFilter = () => {
           className={`btn btn-tech ${
             tech.slug === selectedSlug ? "active" : ""
           }`}
+          style={{ "--tech-color": tech.color } as CSSProperties}
           onClick={() => dispatch({ type: "selectTech", payload: tech.slug })}
         >
           {tech.name}

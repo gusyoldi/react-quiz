@@ -26,6 +26,7 @@ export type QuestionType = {
 export type Technology = {
   slug: string;
   name: string;
+  color: string;
   questions: QuestionType[];
 };
 
@@ -154,7 +155,7 @@ const QuizProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     supabase
       .from("technologies")
-      .select("slug, name, questions(question, options, correctOption:correct_option, points)")
+      .select("slug, name, color, questions(question, options, correctOption:correct_option, points)")
       .order("slug")
       .then(({ data, error }) => {
         if (error || !data) {

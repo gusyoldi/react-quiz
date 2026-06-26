@@ -282,19 +282,28 @@ progress {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: var(--muted);
-  transition: background-color 0.2s ease;
+  background-color: var(--tech-color, var(--muted));
+  opacity: 0.5;
+  transition:
+    background-color 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.btn-tech:not([disabled]):hover::before {
+  opacity: 1;
 }
 
 .btn-tech.active {
-  background-color: var(--primary-soft);
-  border-color: var(--primary);
+  background-color: color-mix(in srgb, var(--tech-color, var(--primary)) 14%, transparent);
+  border-color: var(--tech-color, var(--primary));
   color: var(--text);
 }
 
 .btn-tech.active::before {
-  background-color: var(--primary);
-  box-shadow: 0 0 8px var(--primary);
+  background-color: var(--tech-color, var(--primary));
+  box-shadow: 0 0 8px var(--tech-color, var(--primary));
+  opacity: 1;
 }
 
 .options {
