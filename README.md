@@ -6,7 +6,7 @@
 
 React Quiz es un juego educativo que permite:
 
-- Iniciar un quiz de preguntas sobre React.
+- Elegir una tecnología desde un filtro y jugar su quiz.
 - Seleccionar respuestas y ver los resultados al instante.
 - Ver el progreso de la partida con puntaje y barra de avance.
 - Usar un temporizador para cada sesión de preguntas.
@@ -18,14 +18,14 @@ React Quiz es un juego educativo que permite:
 - Control de respuestas correctas y puntaje acumulado
 - Temporizador en tiempo real usando `useEffect`
 - Componentes reutilizables: `Question`, `Options`, `Progress`, `Timer`, `FinishScreen`
-- Preguntas almacenadas en `data/questions.json` servidas con `json-server`
+- Preguntas almacenadas en Supabase (Postgres), organizadas por tecnología (slug)
 
 ## 🧰 Tecnologías
 
 - React 19
 - TypeScript
 - Vite
-- json-server
+- Supabase (Postgres)
 - ESLint
 
 ## 🧪 Cómo ejecutar
@@ -36,13 +36,24 @@ Instala dependencias:
 pnpm install
 ```
 
-Inicia el servidor de preguntas:
+### Configurar Supabase
+
+1. Crea un proyecto en [supabase.com](https://supabase.com).
+2. En **SQL Editor**, ejecuta el contenido de `supabase/migrations/0001_init_quiz.sql` (crea las tablas, las policies de RLS y carga las preguntas de ejemplo).
+3. Copia `.env.example` a `.env` y completa con tus credenciales:
 
 ```bash
-pnpm server
+cp .env.example .env
 ```
 
-Y en otra terminal arranca la app:
+```
+VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
+VITE_SUPABASE_KEY=tu-publishable-key
+```
+
+> La `VITE_SUPABASE_KEY` es la publishable key (segura para el cliente). Nunca uses la `service_role`/secret key en el frontend.
+
+### Arrancar la app
 
 ```bash
 pnpm dev
@@ -54,7 +65,9 @@ Luego abre `http://localhost:5173` en tu navegador.
 
 - `src/App.tsx` - lógica principal del quiz y estado global
 - `src/components/` - UI y componentes del juego
-- `data/questions.json` - preguntas y opciones del quiz
+- `src/context/QuizContext.tsx` - estado global y consulta a Supabase
+- `src/lib/supabase.ts` - cliente de Supabase
+- `supabase/migrations/` - esquema SQL y seed de preguntas
 - `package.json` - scripts y dependencias del proyecto
 
 ## 💡 Ideal para tu perfil
@@ -64,7 +77,7 @@ Este proyecto es una buena demostración de:
 - React con TypeScript
 - manejo de estado con `useReducer`
 - componentes modulares y reutilizables
-- consumo de datos con `fetch`
+- consumo de datos desde Supabase con `@supabase/supabase-js`
 - despliegue local con `Vite`
 
 Si quieres, puedo también agregar una sección con un GIF o captura de pantalla para que quede aún más atractivo en tu perfil.
