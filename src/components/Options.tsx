@@ -1,5 +1,5 @@
 import type { Dispatch } from "react";
-import type { Action, QuestionType, State } from "../App";
+import type { Action, QuestionType, State } from "../context/QuizContext";
 
 interface OptionsProps {
   options: QuestionType["options"];
