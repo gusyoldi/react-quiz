@@ -22,6 +22,8 @@
 
   --radius: 18px;
   --radius-pill: 100px;
+
+  --glow: var(--primary);
 }
 
 * {
@@ -66,7 +68,10 @@ body {
   border-radius: var(--radius);
   padding: 3.6rem 3.2rem;
   position: relative;
-  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.7);
+  box-shadow:
+    0 24px 60px -28px rgba(0, 0, 0, 0.7),
+    0 0 90px -25px color-mix(in srgb, var(--glow) 55%, transparent);
+  transition: box-shadow 0.4s ease;
 }
 
 .main::before {

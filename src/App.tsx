@@ -9,14 +9,20 @@ import Progress from "./components/Progress";
 import Question from "./components/Question";
 import StartScreen from "./components/StartScreen";
 import Timer from "./components/Timer";
+import type { CSSProperties } from "react";
 import { useQuiz } from "./context/QuizContext";
 import "./index.css";
 
 function App() {
-  const { status } = useQuiz();
+  const { status, selectedSlug, technologies } = useQuiz();
+
+  const glow = technologies.find((t) => t.slug === selectedSlug)?.color;
 
   return (
-    <div className="app">
+    <div
+      className="app"
+      style={glow ? ({ "--glow": glow } as CSSProperties) : undefined}
+    >
       <Header />
       <Main>
         {status === "loading" && <Loader />}
