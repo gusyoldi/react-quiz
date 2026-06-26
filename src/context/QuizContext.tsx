@@ -6,6 +6,7 @@ import {
   type Dispatch,
   type ReactNode,
 } from "react";
+import { supabase } from "../lib/supabase";
 
 const QuizContext = createContext<QuizContextType | undefined>(undefined);
 
@@ -22,7 +23,15 @@ export type QuestionType = {
   points: number;
 };
 
+export type Technology = {
+  slug: string;
+  name: string;
+  questions: QuestionType[];
+};
+
 export type State = {
+  technologies: Technology[];
+  selectedSlug: string | null;
   questions: QuestionType[];
   status: "loading" | "ready" | "error" | "active" | "finished";
   index: number;
@@ -33,8 +42,9 @@ export type State = {
 };
 
 export type Action =
-  | { type: "dataRecived"; payload: QuestionType[] }
+  | { type: "dataRecived"; payload: Technology[] }
   | { type: "dataFailed" }
+  | { type: "selectTech"; payload: string }
   | { type: "start" }
   | { type: "nextQuestion" }
   | { type: "newAnswer"; payload: State["answer"] }
@@ -43,6 +53,8 @@ export type Action =
   | { type: "tick" };
 
 const initialState: State = {
+  technologies: [],
+  selectedSlug: null,
   questions: [],
   index: 0,
   status: "loading",
@@ -57,9 +69,21 @@ const SECS_PER_QUESTION = 30;
 function reducer(state: State, action: Action): State {
   switch (action.type) {
     case "dataRecived":
-      return { ...state, questions: action.payload, status: "ready" };
+      return { ...state, technologies: action.payload, status: "ready" };
     case "dataFailed":
       return { ...state, status: "error" };
+    case "selectTech": {
+      const tech = state.technologies.find((t) => t.slug === action.payload);
+      return {
+        ...state,
+        selectedSlug: action.payload,
+        questions: tech?.questions ?? [],
+        index: 0,
+        answer: null,
+        points: 0,
+        status: "ready",
+      };
+    }
     case "start":
       return {
         ...state,
@@ -88,6 +112,8 @@ function reducer(state: State, action: Action): State {
     case "restart":
       return {
         ...initialState,
+        technologies: state.technologies,
+        selectedSlug: state.selectedSlug,
         questions: state.questions,
         highscore: state.highscore,
         status: "ready",
@@ -105,7 +131,17 @@ function reducer(state: State, action: Action): State {
 
 const QuizProvider = ({ children }: { children: ReactNode }) => {
   const [
-    { questions, status, index, answer, points, highscore, secondsRemaning },
+    {
+      technologies,
+      selectedSlug,
+      questions,
+      status,
+      index,
+      answer,
+      points,
+      highscore,
+      secondsRemaning,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
 
@@ -116,18 +152,25 @@ const QuizProvider = ({ children }: { children: ReactNode }) => {
   const numQuestions = questions.length;
 
   useEffect(() => {
-    fetch("http://localhost:8000/questions")
-      .then((res) => res.json())
-      .then((data) => dispatch({ type: "dataRecived", payload: data }))
-      .catch((err) => {
-        console.error(err);
-        dispatch({ type: "dataFailed" });
+    supabase
+      .from("technologies")
+      .select("slug, name, questions(question, options, correctOption:correct_option, points)")
+      .order("slug")
+      .then(({ data, error }) => {
+        if (error || !data) {
+          console.error(error);
+          dispatch({ type: "dataFailed" });
+          return;
+        }
+        dispatch({ type: "dataRecived", payload: data as Technology[] });
       });
   }, []);
 
   return (
     <QuizContext.Provider
       value={{
+        technologies,
+        selectedSlug,
         questions,
         status,
         index,
