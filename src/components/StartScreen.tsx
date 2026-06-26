@@ -8,7 +8,7 @@ const StartScreen = () => {
 
   return (
     <div className="start">
-      <h2>Bienbenidxs a React Quiz!</h2>
+      <h2>Bienvenidxs a StackQuiz!</h2>
       <h3>Elegí una tecnología para empezar</h3>
 
       <TechFilter />

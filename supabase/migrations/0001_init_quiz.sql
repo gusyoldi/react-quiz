@@ -1,4 +1,4 @@
--- React Quiz: esquema inicial
+-- StackQuiz: esquema inicial
 -- Ejecutar en el SQL Editor de Supabase.
 
 -- =========================================
