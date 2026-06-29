@@ -8,7 +8,6 @@ const StartScreen = () => {
 
   return (
     <div className="start">
-      <h2>Bienvenidxs a StackQuiz!</h2>
       <h3>Elegí una tecnología para empezar</h3>
 
       <TechFilter />
@@ -18,7 +17,7 @@ const StartScreen = () => {
           {numQuestions} preguntas sobre {selectedTech.name}
         </h3>
       ) : (
-        <p>Seleccioná una tecnología arriba</p>
+        <p>Seleccioná una tecnología arriba ☝️:</p>
       )}
       <button
         className="btn btn-ui"
